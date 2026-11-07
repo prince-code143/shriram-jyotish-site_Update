@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>एडमिन पैनल | श्रीराम वैदिक ज्योतिष केंद्र</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="bar">
+    <div class="bar-title"><b>एडमिन पैनल</b><span id="modeChip" class="chip-mode">जाँच रहा है…</span></div>
+    <div class="bar-actions">
+      <span id="dirtyChip" class="dirty" hidden>बिना सेव किए बदलाव</span>
+      <button class="b b-ghost" id="btnPreview" type="button">पूर्वावलोकन छिपाएँ</button>
+      <button class="b b-ghost" id="btnPull" type="button" title="GitHub से ताज़ा सामग्री खींचें">GitHub से लाएँ</button>
+      <button class="b b-main" id="btnSave" type="button">सेव करें</button>
+      <button class="b b-gh" id="btnPublish" type="button">GitHub पर प्रकाशित करें</button>
+      <button class="b b-ghost" id="btnGit" type="button" hidden>git push</button>
+      <button class="b b-ghost icon" id="btnSettings" type="button" title="GitHub सेटिंग" aria-label="GitHub सेटिंग">⚙</button>
+    </div>
+  </header>
+  <nav class="side" id="side" aria-label="सेक्शन सूची"></nav>
+  <main class="main" id="main" tabindex="-1"></main>
+  <aside class="preview" id="previewPane">
+    <iframe id="pv" src="index.html" title="साइट का पूर्वावलोकन"></iframe>
+  </aside>
+</div>
+
+<dialog id="ghDlg">
+  <form method="dialog" id="ghForm">
+    <h3>GitHub सेटिंग</h3>
+    <p class="note">इसी जानकारी से एडमिन पैनल आपके रिपॉज़िटरी में बदलाव भेजेगा। टोकन केवल आपके ब्राउज़र में रहता है।</p>
+    <label>GitHub यूज़रनेम / संस्था<input id="gh-owner" autocomplete="off" placeholder="जैसे: rameshkumar"></label>
+    <label>रिपॉज़िटरी का नाम<input id="gh-repo" autocomplete="off" placeholder="जैसे: shriram-jyotish"></label>
+    <label>ब्रांच<input id="gh-branch" autocomplete="off" value="main"></label>
+    <label>Personal Access Token<input id="gh-token" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+    <label class="chk"><input id="gh-remember" type="checkbox"> इस कंप्यूटर के ब्राउज़र में याद रखें</label>
+    <p class="note">टोकन बनाना: GitHub → Settings → Developer settings → Fine-grained tokens। केवल इसी रिपॉज़िटरी का चयन करें और Contents को “Read and write” दें।</p>
+    <div class="dlg-actions"><button class="b b-ghost" value="cancel" type="submit">बंद करें</button><button class="b b-main" id="ghSaveBtn" value="ok" type="submit">सेटिंग सेव करें</button></div>
+  </form>
+</dialog>
+
+<dialog id="logDlg">
+  <h3 id="logTitle">स्थिति</h3>
+  <pre id="logBody"></pre>
+  <div class="dlg-actions"><button class="b b-main" id="logClose" type="button">ठीक है</button></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="filePick" accept="image/*" hidden>
+<input type="file" id="jsonPick" accept="application/json,.json" hidden>
+
+<script src="data/content.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
